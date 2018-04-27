@@ -18,3 +18,8 @@ From name
 Where gender=NULL;"
 )
 ```
+
+gender is still binary 
+```{r}
+dbGetQuery("Select COUNT(DISTINCT gender) From name;")
+```
