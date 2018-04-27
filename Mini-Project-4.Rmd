@@ -18,3 +18,31 @@ From name
 Where gender=NULL;"
 )
 ```
+
+gender is still binary 
+```{r}
+dbGetQuery("Select COUNT(DISTINCT gender) From name;")
+```
+
+Some examples of correctly listed trans folks: 
+Select name, gender
+From name
+where name= "Lepore, Amanda"
+
+Select name, gender
+From name
+where name= "Bono, Chaz"
+
+Non-Binary Person listed as Male 
+
+Select name, gender
+From name
+where name= "Spoon, Rae"
+
+Aja: many outputs
+Select name, gender
+From name
+where name= "aja"
+
+
+
