@@ -7,5 +7,10 @@ output: html_document
 library(mdsr)
 library(RMySQL)
 db <- dbConnect_scidb(dbname = "imdb")
+db %>%
+  dbGetQuery("SELECT *
+              FROM char_name ch
+              WHERE ch.name = 'James Bond'
+                ;")
 ```
 
