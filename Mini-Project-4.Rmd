@@ -10,3 +10,11 @@ Just testing git :)
 library(dplyr)
 ```
 
+Gender IS Binary 
+```{r}
+db<- dbConnect_scidb(dbname="imdb")
+dbGetQuery("Select name, gender 
+From name
+Where gender=NULL;"
+)
+```
