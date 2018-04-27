@@ -33,4 +33,12 @@ Select name, gender
 From name
 where name= "Bono, Chaz"
 
+Non-Binary Person listed as Male 
+
+Select name, gender
+From name
+where name= "Spoon, Rae"
+
+
+
 
