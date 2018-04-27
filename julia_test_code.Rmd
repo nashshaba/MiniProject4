@@ -1,0 +1,11 @@
+---
+title: "julia_test_code"
+output: html_document
+---
+
+```{r}
+library(mdsr)
+library(RMySQL)
+db <- dbConnect_scidb(dbname = "imdb")
+```
+
