@@ -13,4 +13,3 @@ db %>%
               WHERE ch.name = 'James Bond'
                 ;")
 ```
-
