@@ -23,3 +23,14 @@ gender is still binary
 ```{r}
 dbGetQuery("Select COUNT(DISTINCT gender) From name;")
 ```
+
+Some examples of correctly listed trans folks: 
+Select name, gender
+From name
+where name= "Lepore, Amanda"
+
+Select name, gender
+From name
+where name= "Bono, Chaz"
+
+
