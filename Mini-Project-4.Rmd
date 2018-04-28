@@ -45,4 +45,21 @@ From name
 where name= "aja"
 
 
+Finding all the trans folks 
+Select *
+From person_info
+WHERE info LIKE "%trans%" ANd
+info not LIKE "%transac%" and 
+info not LIKE "%transp%" and
+info not LIKE "%transi%" and 
+info not LIKE "%transc%" and
+info not LIKE "%transy%" and 
+info not LIKE "%transfer%" and 
+info not LIKE "%transfo%" and 
+info not LIKE "%transat%" and 
+info not LIKE "%transgre%" and 
+info not LIKE "%transv%" and 
+info not LIKE "%translat%";
+
+
 
