@@ -12,18 +12,23 @@ db <- dbConnect_scidb(dbname = "imdb")
 Make function to get number of productions of actor
 ```{r}
 db %>%
-  dbGetQuery("SELECT COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              HAVING n.name IN ('Cox, Laverne', 'Ervin, Erika', 'Bono, Chaz', 'Lepore, Amanda', 'Lazzarato, Gigi', 'Carrera, Carmen', 'Wachowski, Lana', 'Wachowski, Lilly', 'Lysette, Trace', 'Jenner, Caitlyn')
+              GROUP BY n.name
+                ;")
+```
+
+```{r}
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
               FROM name n
               LEFT JOIN cast_info c ON n.id = c.person_id
               WHERE n.name = 'Cox, Laverne'
                 ;")
 ```
 
-```{sql}
-CREATE FUNCTION get_num_movies
-  @names AS TABLE 
-  @cast_info AS TABLE
-```
 
 List of prominent trans actors:
 ```{r}
