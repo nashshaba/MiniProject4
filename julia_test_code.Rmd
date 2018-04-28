@@ -17,31 +17,38 @@ db %>%
               LEFT JOIN cast_info c ON n.id = c.person_id
               WHERE n.name IN ('Cox, Laverne', 'Ervin, Erika', 'Bono, Chaz', 'Lepore, Amanda', 'Lazzarato, Gigi', 'Carrera, Carmen', 'Wachowski, Lana', 'Lysette, Trace', 'Jenner, Caitlyn', 'Arquette, Alexis')
               GROUP BY n.name
-              ORDER BY 'Number of movies acted in'
+              ORDER BY COUNT(DISTINCT c.movie_id) DESC
                 ;")
 ```
 
 Name | Number of movies acted in
 --|--
-Arquette, Alexis | 117
-Bono, Chaz | 140
-Carrera, Carmen | 61
-Cox, Laverne | 217
-Ervin, Erika | 37
 Jenner, Caitlyn | 450
-Lazzarato, Gigi | 29
-Lepore, Amanda | 44
-Lysette, Trace | 25
+Cox, Laverne | 217
+Bono, Chaz | 140
+Arquette, Alexis | 117
 Wachowski, Lana | 62
+Carrera, Carmen | 61
+Lepore, Amanda | 44
+Ervin, Erika | 37
+Lazzarato, Gigi | 29
+Lysette, Trace | 25
 
 
 List of prominent trans actors:
 ```{r}
 trans_act_10 <- c("Cox, Laverne", "Ervin, Erika", "Bono, Chaz", "Lepore, Amanda", "Lazzarato, Gigi", "Carrera, Carmen", "Wachowski, Lana", "Wachowski, Lilly", "Lysette, Trace", "Jenner, Caitlyn")
-
-
 ```
 
-Number of productions:
 List of other actors with similar number of productions:
+```{r}
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              WHERE 'Number of movies acted in' = 25
+                ;")
+```
+
+
 Salaries of each:
