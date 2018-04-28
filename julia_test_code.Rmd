@@ -9,25 +9,30 @@ library(RMySQL)
 db <- dbConnect_scidb(dbname = "imdb")
 ```
 
-Make function to get number of productions of actor
+Make query to get number of productions for top 10 trans actors
 ```{r}
 db %>%
   dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
               FROM name n
               LEFT JOIN cast_info c ON n.id = c.person_id
-              HAVING n.name IN ('Cox, Laverne', 'Ervin, Erika', 'Bono, Chaz', 'Lepore, Amanda', 'Lazzarato, Gigi', 'Carrera, Carmen', 'Wachowski, Lana', 'Wachowski, Lilly', 'Lysette, Trace', 'Jenner, Caitlyn')
+              WHERE n.name IN ('Cox, Laverne', 'Ervin, Erika', 'Bono, Chaz', 'Lepore, Amanda', 'Lazzarato, Gigi', 'Carrera, Carmen', 'Wachowski, Lana', 'Lysette, Trace', 'Jenner, Caitlyn', 'Arquette, Alexis')
               GROUP BY n.name
+              ORDER BY 'Number of movies acted in'
                 ;")
 ```
 
-```{r}
-db %>%
-  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
-              FROM name n
-              LEFT JOIN cast_info c ON n.id = c.person_id
-              WHERE n.name = 'Cox, Laverne'
-                ;")
-```
+Name | Number of movies acted in
+--|--
+Arquette, Alexis | 117
+Bono, Chaz | 140
+Carrera, Carmen | 61
+Cox, Laverne | 217
+Ervin, Erika | 37
+Jenner, Caitlyn | 450
+Lazzarato, Gigi | 29
+Lepore, Amanda | 44
+Lysette, Trace | 25
+Wachowski, Lana | 62
 
 
 List of prominent trans actors:
