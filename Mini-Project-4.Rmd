@@ -45,21 +45,84 @@ From name
 where name= "aja"
 
 
-Finding all the trans folks 
-Select *
+Finding all the trans folks --- Takes some time to run
+now that we have this, we can take the person ID numbers and pull those numbers from the name list to get a solid list of trans actors in the IMDB
+
+```{r}
+dbGetQuery(
+"Select *
 From person_info
 WHERE info LIKE "%trans%" ANd
-info not LIKE "%transac%" and 
+info is not NULL and
+info not LIKE "%transa%" and
+info not LIKE "%transb%" and
+info not LIKE "%transc%" and
+info not LIKE "%transd%" and
+info not LIKE "%transe%" and
+info not LIKE "%transh%" and
+info not LIKE "%transi%" and
+info not LIKE "%transj%" and
+info not LIKE "%transk%" and
+info not LIKE "%transl%" and
+info not LIKE "%transn%" and
+info not LIKE "%transo%" and
+info not LIKE "%transp%" and
+info not LIKE "%transq%" and
+info not LIKE "%transr%" and
+info not LIKE "%transt%" and
+info not LIKE "%transu%" and
+info not LIKE "%transv%" and
+info not LIKE "%transw%" and
+info not LIKE "%transx%" and
+info not LIKE "%transy%" and
+info not LIKE "%transz%" and
+info not LIKE "%transac%" and
+info not Like "%trans-racial%" and 
 info not LIKE "%transp%" and
 info not LIKE "%transi%" and 
 info not LIKE "%transc%" and
+info not Like "trans media%" and
+info not like "%transfix%" and
+info not like "%trans-atlantic%" and
 info not LIKE "%transy%" and 
 info not LIKE "%transfer%" and 
 info not LIKE "%transfo%" and 
 info not LIKE "%transat%" and 
 info not LIKE "%transgre%" and 
+info not LIKE "%transmu%" and 
+info not LIKE "%transmit%" and
+info not LIKE "%transGr%" and
+info not LIKE "%transfigu%" and
+info not LIKE "%transwor%" and
+info not LIKE "%transmis%" and
+info not LIKE "%transeau%" and
+info not LIKE "%transk%" and
+info not LIKE "%translu%" and
+info not LIKE "%transfus%" and
+info not LIKE "%transmalians%" and
+info not LIKE "%trans-am%" and
+info not LIKE "%Autrans%" and
+info not LIKE "%trans canada%" and
+info not LIKE "%trans-siberian%" and
+info not LIKE "%trans national%" and
+info not LIKE "%transmigr%" and
+info not LIKE "%transtra%" and
+info not LIKE "%transequr%" and
+info not LIKE "%transue%" and
+info not LIKE "%trans.%" and
+info not LIKE "%transom%" and
+info not LIKE "%transpar%" and
+info not LIKE "%transmed%" and
+info not LIKE "%transs%" and 
 info not LIKE "%transv%" and 
-info not LIKE "%translat%";
+info not LIKE "%translat%" and
+info not LIKE "%transnati%" and
+info not LIKE "%transmetr%" and
+info not LIKE "%transfer%" and
+info not LIKE "%transfa%" and
+info not LIKE "%transl%";"
+)
+```
 
 
 
