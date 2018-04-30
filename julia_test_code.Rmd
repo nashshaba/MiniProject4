@@ -10,7 +10,7 @@ db <- dbConnect_scidb(dbname = "imdb")
 ```
 
 Make query to get number of productions for top 10 trans actors
-```{r}
+```{r, eval = FALSE}
 db %>%
   dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
               FROM name n
@@ -67,3 +67,6 @@ Aakre, Even ; Abad Ojuel, Antonio; Abadia, Lysander| 25
 
 
 Salaries of each:
+
+...So it's a lot harder than I anticipated to find their salaries  
+Use imdb gross something or another instead? 
