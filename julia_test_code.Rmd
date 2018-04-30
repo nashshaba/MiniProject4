@@ -46,6 +46,7 @@ db %>%
   dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
               FROM name n
               LEFT JOIN cast_info c ON n.id = c.person_id
+              GROUP BY n.id
               HAVING COUNT(DISTINCT movie_id) = 25
               LIMIT 5
                 ;")
