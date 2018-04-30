@@ -3,7 +3,7 @@ title: "julia_test_code"
 output: html_document
 ---
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(mdsr)
 library(RMySQL)
 db <- dbConnect_scidb(dbname = "imdb")
@@ -47,10 +47,23 @@ db %>%
               FROM name n
               LEFT JOIN cast_info c ON n.id = c.person_id
               GROUP BY n.id
-              HAVING COUNT(DISTINCT movie_id) = 25
-              LIMIT 5
+              HAVING COUNT(DISTINCT movie_id) = 450
+              LIMIT 4
                 ;")
 ```
+
+Name | Number of movies acted in
+--|--
+Arangüena, Ramón; Aylesworth, John; Beach, John | 450
+Agassi, Carlos; Alboreto, Michele; Alderson, Erville | 217
+Aldama, Jorge; Algueró, Augusto; Alkin, John | 140
+Acord, Art; Ade, George; Adell, Ilunga | 117
+Abdel Aziz, Mahmoud; Abecasis, Chiqui; Abhishek, Krishna | 62
+Aagesen, Elias Amati; Abbey, Francis; Abrahamsson, Magnus | 61
+Aaron, Nicholas, Abad, Javier; Abed, Ramzi | 44
+Aaron, Jonne; Abaydulov, Gali; Abel, Lucas | 37
+Abadía, Miguel Ángel; Abbate, Jessie; Abbott Jr., Michael | 29
+Aakre, Even ; Abad Ojuel, Antonio; Abadia, Lysander| 25
 
 
 Salaries of each:
