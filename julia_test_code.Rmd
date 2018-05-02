@@ -108,6 +108,6 @@ LEFT JOIN person_info p ON n.id = p.person_id
 LEFT JOIN info_type i ON p.info_type_id = i.id
 GROUP BY n.id
 HAVING COUNT(DISTINCT movie_id) = 20
-LIMIT 3;;")
+LIMIT 3;")
 ```
 
