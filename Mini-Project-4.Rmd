@@ -7,16 +7,17 @@ output: html_document
 
 Just testing git :)
 ```{r}
-library(dplyr)
+library(tidyverse)
+library(mdsr)
+library(RMySQL)
+db <- dbConnect_scidb(dbname = "imdb")
 ```
 
 Gender IS Binary 
 ```{r}
-db<- dbConnect_scidb(dbname="imdb")
 dbGetQuery("Select name, gender 
 From name
-Where gender=NULL;"
-)
+Where gender=NULL;")
 ```
 
 gender is still binary 
@@ -27,7 +28,7 @@ dbGetQuery("Select COUNT(DISTINCT gender) From name;")
 Some examples of correctly listed trans folks: 
 Select name, gender
 From name
-where name= "Lepore, Amanda"
+where name= "Lepore, AmANDa"
 
 Select name, gender
 From name
@@ -46,82 +47,82 @@ where name= "aja"
 
 
 Finding all the trans folks --- Takes some time to run
-now that we have this, we can take the person ID numbers and pull those numbers from the name list to get a solid list of trans actors in the IMDB
+now that we have this, we can take the person ID numbers AND pull those numbers from the name list to get a solid list of trans actors in the IMDB
 
 ```{r}
-dbGetQuery(
-"Select *
-From person_info
-WHERE info LIKE "%trans%" ANd
-info is not NULL and
-info not LIKE "%transa%" and
-info not LIKE "%transb%" and
-info not LIKE "%transc%" and
-info not LIKE "%transd%" and
-info not LIKE "%transe%" and
-info not LIKE "%transh%" and
-info not LIKE "%transi%" and
-info not LIKE "%transj%" and
-info not LIKE "%transk%" and
-info not LIKE "%transl%" and
-info not LIKE "%transn%" and
-info not LIKE "%transo%" and
-info not LIKE "%transp%" and
-info not LIKE "%transq%" and
-info not LIKE "%transr%" and
-info not LIKE "%transt%" and
-info not LIKE "%transu%" and
-info not LIKE "%transv%" and
-info not LIKE "%transw%" and
-info not LIKE "%transx%" and
-info not LIKE "%transy%" and
-info not LIKE "%transz%" and
-info not LIKE "%transac%" and
-info not Like "%trans-racial%" and 
-info not LIKE "%transp%" and
-info not LIKE "%transi%" and 
-info not LIKE "%transc%" and
-info not Like "trans media%" and
-info not like "%transfix%" and
-info not like "%trans-atlantic%" and
-info not LIKE "%transy%" and 
-info not LIKE "%transfer%" and 
-info not LIKE "%transfo%" and 
-info not LIKE "%transat%" and 
-info not LIKE "%transgre%" and 
-info not LIKE "%transmu%" and 
-info not LIKE "%transmit%" and
-info not LIKE "%transGr%" and
-info not LIKE "%transfigu%" and
-info not LIKE "%transwor%" and
-info not LIKE "%transmis%" and
-info not LIKE "%transeau%" and
-info not LIKE "%transk%" and
-info not LIKE "%translu%" and
-info not LIKE "%transfus%" and
-info not LIKE "%transmalians%" and
-info not LIKE "%trans-am%" and
-info not LIKE "%Autrans%" and
-info not LIKE "%trans canada%" and
-info not LIKE "%trans-siberian%" and
-info not LIKE "%trans national%" and
-info not LIKE "%transmigr%" and
-info not LIKE "%transtra%" and
-info not LIKE "%transequr%" and
-info not LIKE "%transue%" and
-info not LIKE "%trans.%" and
-info not LIKE "%transom%" and
-info not LIKE "%transpar%" and
-info not LIKE "%transmed%" and
-info not LIKE "%transs%" and 
-info not LIKE "%transv%" and 
-info not LIKE "%translat%" and
-info not LIKE "%transnati%" and
-info not LIKE "%transmetr%" and
-info not LIKE "%transfer%" and
-info not LIKE "%transfa%" and
-info not LIKE "%transl%";"
-)
+dbGetQuery("
+Select *
+FROM person_info
+WHERE info LIKE '%trans%' AND
+info is not NULL AND
+info not LIKE '%transa%' AND
+info not LIKE '%transb%' AND
+info not LIKE '%transc%' AND
+info not LIKE '%transd%' AND
+info not LIKE '%transe%' AND
+info not LIKE '%transh%' AND
+info not LIKE '%transi%' AND
+info not LIKE '%transj%' AND
+info not LIKE '%transk%' AND
+info not LIKE '%transl%' AND
+info not LIKE '%transn%' AND
+info not LIKE '%transo%' AND
+info not LIKE '%transp%' AND
+info not LIKE '%transq%' AND
+info not LIKE '%transr%' AND
+info not LIKE '%transt%' AND
+info not LIKE '%transu%' AND
+info not LIKE '%transv%' AND
+info not LIKE '%transw%' AND
+info not LIKE '%transx%' AND
+info not LIKE '%transy%' AND
+info not LIKE '%transz%' AND
+info not LIKE '%transac%' AND
+info not Like '%trans-racial%' AND 
+info not LIKE '%transp%' AND
+info not LIKE '%transi%' AND 
+info not LIKE '%transc%' AND
+info not Like '%trans media%' AND
+info not like '%transfix%' AND
+info not like '%trans-atlantic%' AND
+info not LIKE '%transy%' AND 
+info not LIKE '%transfer%' AND 
+info not LIKE '%transfo%' AND 
+info not LIKE '%transat%' AND 
+info not LIKE '%transgre%' AND 
+info not LIKE '%transmu%' AND 
+info not LIKE '%transmit%' AND
+info not LIKE '%transGr%' AND
+info not LIKE '%transfigu%' AND
+info not LIKE '%transwor%' AND
+info not LIKE '%transmis%' AND
+info not LIKE '%transeau%' AND
+info not LIKE '%transk%' AND
+info not LIKE '%translu%' AND
+info not LIKE '%transfus%' AND
+info not LIKE '%transmalians%' AND
+info not LIKE '%trans-am%' AND
+info not LIKE '%Autrans%' AND
+info not LIKE '%trans canada%' AND
+info not LIKE '%trans-siberian%' AND
+info not LIKE '%trans national%' AND
+info not LIKE '%transmigr%' AND
+info not LIKE '%transtra%' AND
+info not LIKE '%transequr%' AND
+info not LIKE '%transue%' AND
+info not LIKE '%trans.%' AND
+info not LIKE '%transom%' AND
+info not LIKE '%transpar%' AND
+info not LIKE '%transmed%' AND
+info not LIKE '%transs%' AND 
+info not LIKE '%transv%' AND 
+info not LIKE '%translat%' AND
+info not LIKE '%transnati%' AND
+info not LIKE '%transmetr%' AND
+info not LIKE '%transfer%' AND
+info not LIKE '%transfa%' AND
+info not LIKE '%transl%';
+")
 ```
 
 
