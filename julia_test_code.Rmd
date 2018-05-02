@@ -40,6 +40,32 @@ List of prominent trans actors:
 trans_act_10 <- c("Cox, Laverne", "Ervin, Erika", "Bono, Chaz", "Lepore, Amanda", "Lazzarato, Gigi", "Carrera, Carmen", "Wachowski, Lana", "Wachowski, Lilly", "Lysette, Trace", "Jenner, Caitlyn")
 ```
 
+Query with number of productions for top ten non-trans actors:
+https://www.ranker.com/crowdranked-list/the-greatest-film-actors-and-actresses-of-all-time
+
+```{r}
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              WHERE n.name IN ('Hanks, Tom', 'Davis, Bette', 'Nicholson, Jack', 'Brando, Mark', 'De Niro, Robert', 'Hepburn, Katharine', 'Stewart, James', 'Hopkins, Anthony', 'Hoffman, Dustin', 'Hepburn, Audrey')
+              GROUP BY n.name
+              ORDER BY COUNT(DISTINCT c.movie_id) DESC
+                ;")
+```
+
+Name | Number of movies acted in
+--|--
+Hanks, Tom | 1142
+Stewart, James | 923
+De Niro, Robert | 605
+Hoffman, Dustin | 505
+Hopkins, Anthony | 481
+Davis, Bette | 387
+Nicholson, Jack | 317
+Hepburn, Audrey | 204
+Hepburn, Katharine | 170
+
 List of other actors with similar number of productions:
 ```{r, eval = FALSE}
 db %>%
@@ -70,3 +96,18 @@ Salaries of each:
 
 ...So it's a lot harder than I anticipated to find their salaries  
 Use imdb gross something or another instead? 
+
+```{r}
+db %>%
+  dbGetQuery("EXPLAIN
+SELECT name, COUNT(DISTINCT movie_id) AS 'Avg of movies acted in',
+AVG(i.info REGEXP 'gross')
+FROM imdb.name n
+LEFT JOIN cast_info c ON n.id = c.person_id
+LEFT JOIN person_info p ON n.id = p.person_id
+LEFT JOIN info_type i ON p.info_type_id = i.id
+GROUP BY n.id
+HAVING COUNT(DISTINCT movie_id) = 20
+LIMIT 3;;")
+```
+
