@@ -14,14 +14,9 @@ db <- dbConnect_scidb(dbname = "imdb")
 ```
 
 Gender IS Binary 
-```{r}
-dbGetQuery("Select name, gender 
-From name
-Where gender=NULL;")
-```
 
-gender is still binary 
 ```{r}
+db %>% 
 dbGetQuery("Select COUNT(DISTINCT gender) From name;")
 ```
 
