@@ -50,7 +50,7 @@ Finding all the trans folks --- Takes some time to run
 now that we have this, we can take the person ID numbers AND pull those numbers from the name list to get a solid list of trans actors in the IMDB
 
 ```{r}
-db %>% 
+trans_actors_whole_info<- db %>% 
   dbGetQuery(" Select *
 FROM name
 JOIN person_info on person_info.person_id= name.id
