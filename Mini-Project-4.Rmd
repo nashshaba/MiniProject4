@@ -216,10 +216,7 @@ Further investigation could look into the gross values for each movie where main
 
 
 #### Special Thanks:
-This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, Google Docs.  We used the issues tab to breifly plan and organize, additinally we used google docs [^6]. 
-
-[This is the Link to our Repository](https://github.com/EmilyGrote/MiniProject4.git)
-
+This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, Google Docs.  We would like to add an extra special thanks to google docs for enabling quality organization and collaboration[^6]. The issue tab was some help in planing our initial launch of this project [^7].
 
 
 
@@ -229,7 +226,7 @@ This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, 
 [^4]: [Link to trans-actors on *IMDB*](https://www.imdb.com/list/ls072599514/)
 [^5]: [Link to cisgender acrots on *IMDB*](https://www.imdb.com/list/ls004429898/)
 [^6]: [Link to the google doc](https://docs.google.com/document/d/1EBqizrotfOURJ1xrsDGW8TogOGQZzB0M3ZaC8GzVWLM/edit?usp=sharing)
-
+[^7]: [Link to the GitHub repository](https://github.com/EmilyGrote/MiniProject4.git)
 ```{r}
 wordcountaddin::text_stats("Mini-Project-4.Rmd")
 ```
