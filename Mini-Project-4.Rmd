@@ -127,7 +127,7 @@ db %>%
         where name= 'aja'")
 ```
 
-As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors and the top ten non-trans actors, and compared the number of movies each acted in. Our list of top trans-actors came from the imbd here, and the list of top non-trans actors came from the imdb here: https://www.imdb.com/list/ls004429898/. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
+As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors[^4] and the top ten cisgender actors[^5], and compared the number of movies each acted in. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
 
 ```{r}
 rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,)
@@ -165,6 +165,10 @@ Further investigation could look into the gross values for each movie where main
 [^1]: [Link to Laverne Cox's IMDB page](https://www.imdb.com/name/nm1209545/?ref_=nv_sr_1)
 [^2]: [Link to Caitlyn Jenner's IMDB page](https://www.imdb.com/name/nm0421063/?ref_=nv_sr_1)
 [^3]: [Link to Joanna Fang's IMDB Page](https://www.imdb.com/name/nm4825197/)
+[^4]: [link to trans-actors on IMDB](https://www.imdb.com/list/ls004429898/.)
+[^5]: [Link to cisgender acrots on IMDB]()
+
+
 
 
 
