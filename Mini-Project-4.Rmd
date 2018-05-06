@@ -35,7 +35,7 @@ dbGetQuery("Select COUNT(DISTINCT gender)
 
 The next stage of our analysis focused on trying to find actors that identify as trans from the IMDB.  The only column that contained the words trans, transgender, transfem, transmasc, etc, were located in the ‘notes’ column for person_info. We joined the ‘person_info’ and ‘name’ columns to produce a table that included the ‘notes’ and ‘names’ column.  This enabled the filtering out of trans identified individuals present in the database. It was really hard to separate words involving gender from other words spelled with ‘trans’, such as “transform”, “transport”, “transfuse”, and “trans-atlantic”. The table we ended up with also includes cis folks that have acted in trans roles (also problematic).  The IMDB participates in trans erasure to some degree.  It should not have been this difficult to find trans actors in a database. 
 
-The table below shows a one random actor from the data set created in this process:
+The table below shows Joanna Fang, a random actor from the data set created in this process:
 
 ```{r message=FALSE, warning=FALSE}
 trans_actors_whole_info <- db %>% 
