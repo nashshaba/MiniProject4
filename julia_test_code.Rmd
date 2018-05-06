@@ -54,6 +54,18 @@ db %>%
                 ;")
 ```
 
+From imdb: https://www.imdb.com/list/ls004429898/
+```{r}
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              WHERE n.name IN ('Willis, Bruce', 'Depp, Johnny', 'Oldman, Gary', 'Hanks, Tom', 'Lee Jones, Tommy', 'Smith, Will', 'Alba, Jessica', 'Hayek, Salma', 'Cruz, Penelope', 'Gabin, Jean', 'de Funès, Louis')
+              GROUP BY n.name
+              ORDER BY COUNT(DISTINCT c.movie_id) DESC
+                ;")
+```
+
 Name | Number of movies acted in
 --|--
 Hanks, Tom | 1142
@@ -99,7 +111,7 @@ Use imdb gross something or another instead?
 
 ```{r}
 db %>%
-  dbGetQuery("EXPLAIN
+  dbGetQuery("
 SELECT name, COUNT(DISTINCT movie_id) AS 'Avg of movies acted in',
 AVG(i.info REGEXP 'gross')
 FROM imdb.name n
@@ -109,5 +121,26 @@ LEFT JOIN info_type i ON p.info_type_id = i.id
 GROUP BY n.id
 HAVING COUNT(DISTINCT movie_id) = 20
 LIMIT 3;")
+```
+
+
+Make a plot:
+
+```{r}
+rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,)
+num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117, 577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
+id <- c("t", "t", "t", "t", "t","t", "t", "t", "t", "t", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n")
+trans_num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117)
+nont_num <- c(577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
+
+df <- data.frame(rank, trans_num, nont_num)
+df2 <- data.frame(rank, num, id)
+
+ggplot(df2, aes(x = rank, y = num, fill = id)) +
+  geom_col(position=position_dodge(), width = .9) +
+ # geom_smooth(method = "loess", se = FALSE, aes(color = id)) +
+  xlab("IMDB rank") +
+  ylab("Number of movie productions") +
+  scale_color_hue(labels = c("non-trans", "trans"))
 ```
 
