@@ -129,6 +129,21 @@ db %>%
 
 As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors and the top ten non-trans actors, and compared the number of movies each acted in. Our list of top trans-actors came from the imbd here, and the list of top non-trans actors came from the imdb here: https://www.imdb.com/list/ls004429898/. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
 
+```{r}
+rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,)
+num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117, 577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
+id <- c("t", "t", "t", "t", "t","t", "t", "t", "t", "t", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n")
+df2 <- data.frame(rank, num, id)
+
+ggplot(df2, aes(x = rank, y = num, fill = id)) +
+  geom_col(position=position_dodge(), width = .9) +
+ # geom_smooth(method = "loess", se = FALSE, aes(color = id)) +
+  xlab("IMDB rank") +
+  ylab("Number of movie productions") +
+  scale_fill_discrete(name = "Identity", labels = c("non-trans", "trans")) +
+  scale_x_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  scale_y_continuous(breaks = c(0, 250, 500, 750, 1000, 1250, 1500)) 
+```
   
 ### Relevant External Information:
 
