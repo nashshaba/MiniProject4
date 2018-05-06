@@ -160,9 +160,8 @@ df2 %>%
   summarize(avg_productions = mean(num))
 # = 543.7
 
-
 produc <- c(543.7, 118.2)
-ids <- c("nontrans", "trans")
+ids <- c("cis", "trans")
 df3 <- data.frame(produc, ids)
 
 ggplot(df3, aes(x = ids, y = produc, fill = ids)) +

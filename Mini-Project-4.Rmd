@@ -130,7 +130,7 @@ db %>%
 As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors[^4] and the top ten cisgender actors[^5], and compared the number of movies each acted in. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
 
 ```{r}
-rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,)
+rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117, 577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
 id <- c("t", "t", "t", "t", "t","t", "t", "t", "t", "t", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n")
 df2 <- data.frame(rank, num, id)
@@ -140,10 +140,37 @@ ggplot(df2, aes(x = rank, y = num, fill = id)) +
  # geom_smooth(method = "loess", se = FALSE, aes(color = id)) +
   xlab("IMDB rank") +
   ylab("Number of movie productions") +
-  scale_fill_discrete(name = "Identity", labels = c("non-trans", "trans")) +
+  scale_fill_discrete(name = "Identity", labels = c("cis", "trans")) +
   scale_x_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
   scale_y_continuous(breaks = c(0, 250, 500, 750, 1000, 1250, 1500)) 
 ```
+  
+```{r}
+#average number of productions for top-ten trans actors
+# = 118.2
+df2 %>%
+  filter(id == "t") %>%
+  summarize(avg_productions = mean(num))
+
+#average number of productions for top-ten non-trans actors
+df2 %>%
+  filter(id == "n") %>%
+  summarize(avg_productions = mean(num))
+# = 543.7
+
+produc <- c(543.7, 118.2)
+ids <- c("cis", "trans")
+df3 <- data.frame(produc, ids)
+
+ggplot(df3, aes(x = ids, y = produc, fill = ids)) +
+  geom_col(width = .9) +
+  ylab("Average number of movie productions") +
+  xlab("Identity") +
+  guides(fill=FALSE) +
+  scale_y_continuous(breaks = c(0, 100, 200, 300, 400, 500)) +
+  geom_text(aes(label = produc), nudge_y = -20, size = 4)
+
+```  
   
 ### Relevant External Information:
 
