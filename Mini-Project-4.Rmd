@@ -13,15 +13,13 @@ library(RMySQL)
 db <- dbConnect_scidb(dbname = "imdb")
 ```
 
-Gender IS Binary 
-```{r}
-dbGetQuery("Select name, gender 
-From name
-Where gender=NULL;")
-```
 
-gender is still binary 
+
+
+Gender IS Binary 
+
 ```{r}
+db %>% 
 dbGetQuery("Select COUNT(DISTINCT gender) From name;")
 ```
 
@@ -50,9 +48,10 @@ Finding all the trans folks --- Takes some time to run
 now that we have this, we can take the person ID numbers AND pull those numbers from the name list to get a solid list of trans actors in the IMDB
 
 ```{r}
-dbGetQuery("
-Select *
-FROM person_info
+trans_actors_whole_info <- db %>% 
+  dbGetQuery(" Select gender, name, note, person_id, info
+FROM name
+JOIN person_info on person_info.person_id= name.id
 WHERE info LIKE '%trans%' AND
 info is not NULL AND
 info not LIKE '%transa%' AND
@@ -121,8 +120,7 @@ info not LIKE '%transnati%' AND
 info not LIKE '%transmetr%' AND
 info not LIKE '%transfer%' AND
 info not LIKE '%transfa%' AND
-info not LIKE '%transl%';
-")
+info not LIKE '%transl%';")
 ```
 
 
