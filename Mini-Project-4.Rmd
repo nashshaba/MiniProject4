@@ -7,6 +7,12 @@ output:
     code_folding: hide
 ---
 
+
+
+![optional caption text](https://imgflip.com/i/29r1ak)
+
+
+
 ###Problem Statement:
 
 The *International Movie Database (IMDB)*  is a well known internet database containing. Society imposes binary gender options on individuals, so we explored how this manifests in the data stored with the *IMDB*. 
