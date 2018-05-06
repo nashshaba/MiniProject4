@@ -2,10 +2,11 @@
 title: "Draft"
 author: "Mylo"
 date: "4/25/2018"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
-Just testing git :)
 ```{r}
 library(tidyverse)
 library(mdsr)
@@ -20,7 +21,8 @@ Gender IS Binary
 
 ```{r}
 db %>% 
-dbGetQuery("Select COUNT(DISTINCT gender) From name;")
+dbGetQuery("Select COUNT(DISTINCT gender) 
+           From name;")
 ```
 
 Some examples of correctly listed trans folks: 
