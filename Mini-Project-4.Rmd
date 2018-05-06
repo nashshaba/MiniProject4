@@ -146,7 +146,7 @@ ggplot(df2, aes(x = rank, y = num, fill = id)) +
   ggtitle("Movie productions for top ten actors")
 ```
   
-From the graph above, it is clear that the number of movie productions for cisgender actors is much higher than the number of movie productions for transgender actors, often by an order of magnitude. In the graph below, the average number for top ten actors differs by over 400 movie productions.
+From the graph above, it is clear that the number of movie productions for cisgender actors is much higher than the number of movie productions for transgender actors, often by an order of magnitude. In the graph below, the average number for top ten actors differs by over 400 movie productions.  
   
 ```{r}
 #average number of productions for top-ten trans actors
