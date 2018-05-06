@@ -215,7 +215,10 @@ We also wanted to look at the salary of trans and non-trans actors in the databa
 Further investigation could look into the gross values for each movie where main characters were trans, compared to the same values for non-trans main characters. We also recomend that the *IMDB* consider updating its information for trans folk, and consider updating the gender classification system from binary to a non-binary system. 
 
 
+#### Special Thanks:
+This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, Google Docs.  We used the issues tab to breifly plan and organize, additinally we used google docs [^6]. 
 
+[This is the Link to our Repository](https://github.com/EmilyGrote/MiniProject4.git)
 
 
 
@@ -223,8 +226,9 @@ Further investigation could look into the gross values for each movie where main
 [^1]: [Link to Laverne Cox's *IMDB* page](https://www.imdb.com/name/nm1209545/?ref_=nv_sr_1)
 [^2]: [Link to Caitlyn Jenner's *IMDB* page](https://www.imdb.com/name/nm0421063/?ref_=nv_sr_1)
 [^3]: [Link to Joanna Fang's *IMDB* Page](https://www.imdb.com/name/nm4825197/)
-[^4]: [link to trans-actors on *IMDB*](https://www.imdb.com/list/ls072599514/)
+[^4]: [Link to trans-actors on *IMDB*](https://www.imdb.com/list/ls072599514/)
 [^5]: [Link to cisgender acrots on *IMDB*](https://www.imdb.com/list/ls004429898/)
+[^6]: [Link to the google doc](https://docs.google.com/document/d/1EBqizrotfOURJ1xrsDGW8TogOGQZzB0M3ZaC8GzVWLM/edit?usp=sharing)
 
 ```{r}
 wordcountaddin::text_stats("Mini-Project-4.Rmd")
