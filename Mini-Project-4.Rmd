@@ -116,7 +116,7 @@ trans_actors_whole_info %>%
   slice(174)
 ```
 
-The gender of well known actors like Laverne Cox [^1] and Caitlyn Jenner[^2] are listed correctly, but for less known trans actors gendered labeling becomes more complex.  There is not a clear and consistent way that gender is assigned to non-binary actors.   Additionally a number of trans actors were listed multiple times with any combination of F, M, and Null.  The gender for Joanna Fang [^3], a transgender woman, is listed as NA in the table above.
+The gender of well known actors like Laverne Cox[^1] and Caitlyn Jenner[^2] are listed correctly, but for less known trans actors gendered labeling becomes more complex.  There is not a clear and consistent way that gender is assigned to non-binary actors.   Additionally a number of trans actors were listed multiple times with any combination of F, M, and Null.  The gender for Joanna Fang [^3], a transgender woman, is listed as NA in the table above.
 
 Another example of this strange gender record keeping is Aja, a drag performer.  Aja is listed 6 times and, one of which the gender is marked M.  
 
@@ -127,9 +127,29 @@ db %>%
         where name= 'aja'")
 ```
 
-[^1] [Link to Laverne Cox's IMDB page](https://www.imdb.com/name/nm1209545/?ref_=nv_sr_1)
-[^2] [Link to Caitlyn Jenner's IMDB page](https://www.imdb.com/name/nm0421063/?ref_=nv_sr_1)
-[^3] [Link to Joanna Fang's IMDB Page](https://www.imdb.com/name/nm4825197/)
+As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors and the top ten non-trans actors, and compared the number of movies each acted in. Our list of top trans-actors came from the imbd here, and the list of top non-trans actors came from the imdb here: https://www.imdb.com/list/ls004429898/. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
+
+
+### Relevant External Information:
+
+For part of our project, we also wanted to look at how the database changed over time. However, public logs are not available. In searching for the history of the database, we also found that any user could submit edits to the database. After our analysis, we propose to submit changes to the IMDB database to make it more inclusive in terms of gender. The ‘gender’ column should include a wide range of gender identities, and remove previous and incorrect entries for gender.
+
+We also wanted to look at the salary of trans and non-trans actors in the database. To do this, we looked at the top ten trans actors, and found the number of movie productions each was in. Then, we found non-trans actors with the same number of movie productions. Our next step would have been to compare the salaries for actors with roughly the same amount of success; however this branch of our project was unable to be continued, as we were unable to find the salaries of actors.
+
+
+
+###Future Work and Suggestions:
+Further investigation could look into the gross values for each movie where main characters were trans, compared to the same values for non-trans main characters. We also recomend that the IMDB consider updating its information for trans folk, and consider updating the gender classification system from binary to a non-binary system. 
+
+
+
+
+
+
+
+[^1]: [Link to Laverne Cox's IMDB page](https://www.imdb.com/name/nm1209545/?ref_=nv_sr_1)
+[^2]: [Link to Caitlyn Jenner's IMDB page](https://www.imdb.com/name/nm0421063/?ref_=nv_sr_1)
+[^3]: [Link to Joanna Fang's IMDB Page](https://www.imdb.com/name/nm4825197/)
 
 
 
