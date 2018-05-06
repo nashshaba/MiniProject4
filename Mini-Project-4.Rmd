@@ -206,7 +206,9 @@ Further investigation could look into the gross values for each movie where main
 [^4]: [link to trans-actors on IMDB](https://www.imdb.com/list/ls072599514/)
 [^5]: [Link to cisgender acrots on IMDB](https://www.imdb.com/list/ls004429898/)
 
-
+```{r}
+wordcountaddin::text_stats("Mini-Project-4.Rmd")
+```
 
 
 
