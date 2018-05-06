@@ -151,7 +151,7 @@ db %>%
   dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
               FROM name n
               LEFT JOIN cast_info c ON n.id = c.person_id
-              WHERE n.name IN ('Hanks, Tom', 'Davis, Bette', 'Nicholson, Jack', 'Brando, Mark', 'De Niro, Robert', 'Hepburn, Katharine', 'Stewart, James', 'Hopkins, Anthony', 'Hoffman, Dustin', 'Hepburn, Audrey')
+              WHERE n.name IN ('Willis, Bruce', 'Depp, Johnny', 'Oldman, Gary', 'Hanks, Tom', 'Lee Jones, Tommy', 'Smith, Will', 'Alba, Jessica', 'Hayek, Salma', 'Cruz, Penelope', 'Gabin, Jean', 'de Funès, Louis')
               GROUP BY n.name
               ORDER BY COUNT(DISTINCT c.movie_id) DESC
                 ;")
