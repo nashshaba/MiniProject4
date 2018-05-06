@@ -216,7 +216,7 @@ Further investigation could look into the gross values for each movie where main
 
 
 #### Special Thanks:
-This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, Google Docs.  We would like to add an extra special thanks to google docs for enabling quality organization and collaboration[^6]. The issue tab was some help in planing our initial launch of this project [^7].
+This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, and Google Docs.  We would like to add an extra special thanks to google docs for enabling quality organization and collaboration[^6]. The issue tab was some help in planing our initial launch of this project [^7].
 
 
 
