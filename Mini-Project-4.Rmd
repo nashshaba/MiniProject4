@@ -22,11 +22,13 @@ db <- dbConnect_scidb(dbname = "imdb")
 
 ###Problem Statement:
 
-The *International Movie Database (IMDB)*  is a well known internet database containing. Society imposes binary gender options on individuals, so we explored how this manifests in the data stored with the *IMDB*. 
+The *International Movie Database (IMDB)*  is a well known internet database containing information pertaining to actors and movies. Society imposes binary gender options on individuals, so we explored how this manifests in the data stored with the *IMDB*. 
 
 
 
 ###Analysis: 
+
+We used the names, person_info, and cast_info tables from the IMDB. These tables joined to provide the necessary information linking the actors and other data.
 
 #####Gender IS Binary:
 
@@ -136,6 +138,25 @@ db %>%
 
 As another step of our analysis, we looked at the number of movies top actors were in. We took the top ten trans actors[^4] and the top ten cisgender actors[^5], and compared the number of movies each acted in. This showed a vast difference in the number of movies between the two groups; for example, the 5th top trans actress Lana Wachowski is listed with 62 movie productions, while the 5th top non-trans actor Anthony Hopkins is listed with 481 movie productions.
 
+```{r, echo=FALSE}
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              WHERE n.name IN ('Cox, Laverne', 'Ervin, Erika', 'Bono, Chaz', 'Lepore, Amanda', 'Lazzarato, Gigi', 'Carrera, Carmen', 'Wachowski, Lana', 'Lysette, Trace', 'Jenner, Caitlyn', 'Arquette, Alexis')
+              GROUP BY n.name
+              ORDER BY COUNT(DISTINCT c.movie_id) DESC
+                ;")
+db %>%
+  dbGetQuery("SELECT name, COUNT(DISTINCT movie_id) AS 'Number of movies acted in'
+              FROM name n
+              LEFT JOIN cast_info c ON n.id = c.person_id
+              WHERE n.name IN ('Hanks, Tom', 'Davis, Bette', 'Nicholson, Jack', 'Brando, Mark', 'De Niro, Robert', 'Hepburn, Katharine', 'Stewart, James', 'Hopkins, Anthony', 'Hoffman, Dustin', 'Hepburn, Audrey')
+              GROUP BY n.name
+              ORDER BY COUNT(DISTINCT c.movie_id) DESC
+                ;")
+```
+
 ```{r}
 rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117, 577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
@@ -169,7 +190,7 @@ df2 %>%
 # = 543.7
 
 produc <- c(543.7, 118.2)
-ids <- c("cis", "trans")
+ids <- c("cisgender", "transgender")
 df3 <- data.frame(produc, ids)
 
 ggplot(df3, aes(x = ids, y = produc, fill = ids)) +
@@ -187,8 +208,7 @@ ggplot(df3, aes(x = ids, y = produc, fill = ids)) +
 
 For part of our project, we also wanted to look at how the database changed over time. However, public logs are not available. In searching for the history of the database, we also found that any user could submit edits to the database. After our analysis, we propose to submit changes to the IMDB database to make it more inclusive in terms of gender. The ‘gender’ column should include a wide range of gender identities, and remove previous and incorrect entries for gender.
 
-We also wanted to look at the salary of trans and non-trans actors in the database. To do this, we looked at the top ten trans actors, and found the number of movie productions each was in. Then, we found non-trans actors with the same number of movie productions. Our next step would have been to compare the salaries for actors with roughly the same amount of success; however this branch of our project was unable to be continued, as we were unable to find the salaries of actors.
-
+We also wanted to look at the salary of trans and non-trans actors in the database. To do this, we looked at the top ten trans actors, and found the number of movie productions each was in. Then, we found non-trans actors with the same number of movie productions. Our next step would have been to compare the salaries for actors with roughly the same amount of success; however this branch of our project was unable to be continued, as we were unable to find the salaries of actors. 
 
 
 ###Future Work and Suggestions:
