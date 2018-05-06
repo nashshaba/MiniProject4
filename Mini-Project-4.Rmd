@@ -192,8 +192,8 @@ Further investigation could look into the gross values for each movie where main
 [^1]: [Link to Laverne Cox's IMDB page](https://www.imdb.com/name/nm1209545/?ref_=nv_sr_1)
 [^2]: [Link to Caitlyn Jenner's IMDB page](https://www.imdb.com/name/nm0421063/?ref_=nv_sr_1)
 [^3]: [Link to Joanna Fang's IMDB Page](https://www.imdb.com/name/nm4825197/)
-[^4]: [link to trans-actors on IMDB](https://www.imdb.com/list/ls004429898/)
-[^5]: [Link to cisgender acrots on IMDB]()
+[^4]: [link to trans-actors on IMDB](https://www.imdb.com/list/ls072599514/)
+[^5]: [Link to cisgender acrots on IMDB](https://www.imdb.com/list/ls004429898/)
 
 
 
