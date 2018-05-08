@@ -157,24 +157,62 @@ db %>%
                 ;")
 ```
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE,warning=FALSE}
 rank <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 num <- c(217, 37, 140, 44, 29, 61, 62, 25, 450, 117, 577, 690, 254, 1142, 1392, 523, 489, 1, 148, 221)
 id <- c("t", "t", "t", "t", "t","t", "t", "t", "t", "t", "n", "n", "n", "n", "n", "n", "n", "n", "n", "n")
 df2 <- data.frame(rank, num, id)
 
-ggplot(df2, aes(x = rank, y = num, fill = id)) +
-  geom_col(position=position_dodge(), width = .9) +
- # geom_smooth(method = "loess", se = FALSE, aes(color = id)) +
-  xlab("IMDB rank") +
-  ylab("Number of movie productions") +
-  scale_fill_discrete(name = "Identity", labels = c("cisgender", "transgender")) +
-  scale_x_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
-  scale_y_continuous(breaks = c(0, 250, 500, 750, 1000, 1250, 1500)) +
-  ggtitle("Movie productions for top ten actors")
-```
+#line graph with colored area under graph
+
+name <- c("Caitlyn Jenner","Laverne Cox","Chaz Bono","Alexis Arquette","Lana Wachowski","Carmen Carerra","Amanda Lepore","Erika Ervin","Gigi Lazzarato","Trace Lysette","Will Smith","Tom Hanks","Johnny Depp","Bruce Willis","Jessica Alba","Salma Hayek","Gary Oldman"," Louis de Funès","Jean Gabin","Penelope Cruz")
+
+#bar graph with vertical name labels
+
+plot<- ggplot(df2, aes(x=rank, y= num,fill=id))
+plot+
+geom_bar(position = 'dodge', stat='identity')+
+    geom_text(aes(label=paste(name)), position=position_dodge(width=0.9), angle=90, hjust=-0.05)+
+theme(plot.title = element_text(size=15,face = "italic", color = "gray23", hjust = 0.5))+
+      
+  guides(color=FALSE)+
+  scale_x_continuous("IMDB rank",breaks=c(1,2,3,4,5,6,7,8,9,10),expand=c(0,0.2)) +
+  scale_y_continuous("Number of movie productions", limit=c(0,1750),breaks=seq(0,1750,250),expand=c(0,0)) +
+   scale_fill_discrete(name = "Identity", labels = c("cisgender", "transgender")) +
+   labs(title="Movie productions for top ten actors")
+
+
+#filled in graph
+ggplot(df2, aes(x = rank, y = num, group=id)) +
   
-From the graph above, it is clear that the number of movie productions for cisgender actors is much higher than the number of movie productions for transgender actors, often by an order of magnitude. In the graph below, the average number for top ten actors differs by over 400 movie productions.  
+  geom_area(aes(fill = id), alpha=0.4) +
+  geom_line(aes(color=id),position = "stack")+
+  geom_point(aes(color=id),position = "stack")+
+theme(plot.title = element_text(size=20,face = "italic", color = "gray23", hjust = 0.5),panel.grid.major = element_line(linetype = "blank"),
+        panel.grid.minor = element_line(linetype="blank"))+
+  guides(color=FALSE)+
+  scale_fill_discrete(name = "Identity", labels = c("cisgender", "transgender")) +
+  scale_x_continuous("IMDB rank",limit=c(1,10),breaks=seq(1,10,1), expand=c(0,0.2)) +
+  scale_y_continuous("Number of movie productions", limit=c(0,1500),breaks = seq(0,1500,250),expand=c(0,0)) +
+  labs(title="Movie productions for top ten actors")+
+  #first set of annotation
+    annotate("segment", x=5,xend=6, y=1392, yend=1392)+
+  annotate("segment", x = 6, xend = 6, y = 1392, yend = 1320)+
+  geom_point(aes(x=5, y= 1392), fill="white", color="black", shape=21, size=8)+
+  annotate("text", x= 6, y=1300, label= "1392 movie production",  size= 4, fontface="italic")+
+  annotate("text", x= 6, y=1230, label= "for cisgendender actress",  size= 4, fontface="italic")+
+  annotate("text", x= 6, y=1160, label= "Jessica Alba",  size= 4, fontface="italic")+
+  #second set of annotation
+   annotate("segment", x=9,xend=8, y=450, yend=450)+
+  annotate("segment", x = 8, xend = 8, y = 450, yend = 590)+
+  geom_point(aes(x=9, y= 450), fill="white", color="black", shape=21, size=8)+
+  annotate("text", x= 8, y=770, label= "540 movie productions",  size= 4, fontface="italic")+
+  annotate("text", x= 8, y=700, label= "for transgendender YouTuber",  size= 4, fontface="italic")+
+  annotate("text", x= 8, y=630, label= "Gigi Lazzarato",  size= 4, fontface="italic")
+
+```
+
+From the graphs above, it is clear that the number of movie productions for cisgender actors is much higher than the number of movie productions for transgender actors, often by an order of magnitude. In the graph below, the average number for top ten actors differs by over 400 movie productions.  
   
 ```{r message=FALSE, warning=FALSE}
 #average number of productions for top-ten trans actors
@@ -227,7 +265,7 @@ This project was made possible by Smith College, IMDB, GitHub, MySQL Workbench, 
 [^5]: [Link to cisgender acrots on *IMDB*](https://www.imdb.com/list/ls004429898/)
 [^6]: [Link to the google doc](https://docs.google.com/document/d/1EBqizrotfOURJ1xrsDGW8TogOGQZzB0M3ZaC8GzVWLM/edit?usp=sharing)
 [^7]: [Link to the GitHub repository](https://github.com/EmilyGrote/MiniProject4.git)
-```{r}
+```{r, eval = FALSE}
 wordcountaddin::text_stats("Mini-Project-4.Rmd")
 ```
 
